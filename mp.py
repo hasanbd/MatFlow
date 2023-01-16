@@ -2,7 +2,7 @@
 Purpose:connect manager for page to page link
 """
 import streamlit as st
-
+from Layout  import layout
 
 class MP:
 
@@ -28,5 +28,5 @@ class MP:
             self.forms,
             format_func=lambda form: form['title']
         )
-        page['function']()
+        page['function']()        
 
