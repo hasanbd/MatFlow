@@ -25,7 +25,10 @@ def form():
                 <label for="exampleInputFirstName">Last Name</label>
                 <input as="textarea" rows="3" placeholder="Please provide as much detail as possible so we are able to better assist you" class="form-control" id="exampleInputFirstName" aria-describedby="emailHelp" placeholder="Enter Your Last Name">
             </div>
-
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     """

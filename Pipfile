@@ -16,6 +16,8 @@ sweetviz = "~=2.1.4"
 rdkit = "*"
 ipython = "*"
 dask = "*"
+streamlit-option-menu = "*"
+hydralit-components = "*"
 
 [dev-packages]
 
