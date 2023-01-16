@@ -2,7 +2,7 @@
 Purpose:connect manager for page to page link
 """
 import streamlit as st
-
+from Layout  import layout
 
 class MP:
 
@@ -29,4 +29,6 @@ class MP:
             format_func=lambda form: form['title']
         )
         page['function']()
+    def ly(self):
+        layout.navbar()
 

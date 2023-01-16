@@ -7,3 +7,5 @@ Pillow==9.3.0
 matplotlib==3.6.2
 seaborn==0.12.1
 sweetviz~=2.1.4
+pdfminer = "*"
+streamlit-pandas-profiling = "*"
