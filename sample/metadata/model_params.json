@@ -1,0 +1,1 @@
+{"X": ["VS2", "VSe2", "VTe2", "MoS2", "MoSe2", "MoTe2", "TiS2", "TiSe2", "TiTe2", "WS2", "WSe2", "WTe2", "ScS2", "ScSe2", "ScTe2", "NiS2", "NiSe2", "NiTe2", "V", "Mo", "Ti", "W", "Sc", "Ni", "S2", "Se2", "Te2", "AvgFormE", "AvgMass", "AvgRadius", "AvgElecNeg", "WeightDif"], "y": "Formation E", "pred_type": "Regression"}
