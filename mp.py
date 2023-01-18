@@ -2,7 +2,8 @@
 Purpose:connect manager for page to page link
 """
 import streamlit as st
-from Layout  import layout
+from streamlit_extras.switch_page_button import switch_page
+
 
 class MP:
 
@@ -19,14 +20,18 @@ class MP:
         )
 
     def start(self):
-        # st.write('What you want to do?')
-        # pass
+        col1,col2=st.columns([1.5,1])
+        with col2:
+            next= st.button('next page')
+            if next:
+                switch_page('selectpage')
 
         # st.sidebar.image('Logo.png')
-        page = st.sidebar.selectbox(
-            '💎 System Navigation here⤵️::💎',
-            self.forms,
-            format_func=lambda form: form['title']
-        )
-        page['function']()        
 
+        # page = st.sidebar.selectbox(
+        #     '💎 System Navigation here⤵️::💎',
+        #     self.forms,
+        #     format_func=lambda form: form['title']
+        # )
+        # page['function']()
+        # switch_page()

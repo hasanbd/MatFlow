@@ -23,7 +23,6 @@ def main():
             read.read_dataset(dataset)
     except:
         pass
-    #
     # with tabs[1]:
     #     split.split_dataset(dataset)
 

@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 
 
 def split_dataset(dataset):
+    pass
     list_data = dataset.list_name()
 
     if list_data:

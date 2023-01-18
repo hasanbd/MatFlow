@@ -140,6 +140,7 @@ def ShowHistogramCharts(data):
             if cnt == 0:
                 st.markdown('<h3>Processed data</h3>',unsafe_allow_html=True)
                 pdd = pd.DataFrame(data.describe())
+                print(pdd)
                 st.table(pdd)
                 st.markdown('<h3>Histograms</h3>', unsafe_allow_html=True)
                 cnt += 1
