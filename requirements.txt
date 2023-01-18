@@ -6,7 +6,7 @@ matplotlib~=3.5.2
 streamlit~=1.16.0
 rdkit~=2022.9.2
 tqdm~=4.64.1
-pdfminer.six~=20221105
+pdfminer.six==20221105
 ipython~=7.31.1
 dask~=2022.7.0
 pillow~=9.2.0
