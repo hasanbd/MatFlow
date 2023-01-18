@@ -84,7 +84,6 @@ def read_dataset(dataset):
                 x = y
             x += 1
             with st.expander(i[x:]):
-                pass
                 if i.endswith('.csv'):
                     dt = pd.read_csv(i)
                     st.table(dt.head())
