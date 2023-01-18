@@ -1,0 +1,16 @@
+pandas~=1.4.4
+numpy~=1.21.5
+scikit-learn~=1.0.2
+seaborn~=0.11.2
+matplotlib~=3.5.2
+streamlit~=1.16.0
+rdkit~=2022.9.2
+tqdm~=4.64.1
+ipython~=7.31.1
+dask~=2022.7.0
+pdfminer~=20191125
+pillow~=9.2.0
+joblib~=1.1.0
+pathlib~=1.0.1
+sweetviz~=2.1.4
+scipy~=1.9.1
