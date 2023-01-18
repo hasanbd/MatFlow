@@ -2,12 +2,13 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 
-from forms import dl, intelli, du, dv, evaluation, ExData, DFrame, FEngineering, pProfile
+#from forms import dl, intelli, du, dv, evaluation, ExData, DFrame, FEngineering, pProfile
+from forms import dl, DFrame, FEngineering, ExData, pProfile, machine_learning, ModelBuild, home,epsilon,dv
 import hydralit_components as hc
-from Layout import layout, contact, about, help, footer, start
+from Layout import contact, help, about, footer, start
 from mp import MP
 
-
+ml = MP()
 
 
 #make it look nice from the start
@@ -36,6 +37,7 @@ menu_id = hc.nav_bar(
 
 if(menu_id == "Home"):
     start.load_view()
+    ml.start()
     footer.load_view()
 if(menu_id == "About"):
     about.load_view()

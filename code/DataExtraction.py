@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 from . import utils
-import streamlit as st
 import os
 
 import re
@@ -14,17 +13,12 @@ from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
 
-def deep4che(csvs):
-
-    data = csvs[1]
-    print(data)
+def deep4che():
+    data = pd.read_csv('./rawData/Deep4Chem/DB for chromophore_Sci_Data_rev02.csv')
     # Loading the verified data and correcting any issue we found
-    temp = csvs[0][['Tag','Should be']]
-    print(temp)
-
-    # return
+    df=pd.read_csv('./rawData/Deep4Chem/DoubleCheck-High Extinction.csv')
+    temp = df[['Tag','Should be']]
     temp['log(Epsilon)'] = temp['Should be'].apply(lambda x: x if x != 'x' else np.nan).astype('float').apply(np.log10)
-
     data = data.merge(temp, on='Tag', how='left')
     data['log(Epsilon)'] = data['log(Epsilon)'].fillna(data['log(e/mol-1 dm3 cm-1)'])
 
@@ -41,13 +35,12 @@ def deep4che(csvs):
     utils.ConvertStringColumnsToInt(data)
     utils.ConvertFloatColumnsToIntegerIfNoDataLoss(data)
     utils.CompressIntegerColumns(data)
-    ##data.info()
     utils.InspectColumnValues(data)
-    #data.describe()
     utils.ShowHistogramCharts(data)
     utils.SaveDataToOutput(data, 'extraction-deep4Chem')
     utils.LoadDataFromOutput('extraction-deep4Chem')
-def dynamocs(csvs):
+
+def dynamocs():
     # display(HTML("<style>.container { width:100% !important; }</style>"))
     def GetPageText(page, resourceManager):
         result = StringIO()
@@ -59,7 +52,7 @@ def dynamocs(csvs):
         return result.getvalue()
 
     pagesRaw = []
-    with open(csvs[0], 'rb') as in_file:
+    with open('./rawData/Dyomics/Dyomics_2017.pdf', 'rb') as in_file:
         resourceManager = PDFResourceManager()
 
         count = 0
@@ -209,7 +202,7 @@ def dynamocs(csvs):
     #     #print()
     data.drop(data.columns[data.columns.str.contains(' text')], axis='columns', inplace=True)
     data.drop(['page number', 'id'], axis='columns', inplace=True)
-    temp = pd.read_csv(csvs[1])
+    temp = pd.read_csv('./rawData/Dyomics/SmilesData.csv')
     temp['Name'] = temp['Name'].str.upper()
     temp['Smiles'] = temp['Correct Smiles'].fillna(temp['Generated Smiles'])
     temp = temp[['Name', 'Smiles']]
@@ -231,14 +224,14 @@ def dynamocs(csvs):
     utils.ShowHistogramCharts(data)
     utils.SaveDataToOutput(data, 'extraction-dyomics')
     utils.LoadDataFromOutput('extraction-dyomics')
-def Photoche(csvs):
+def Photoche():
     # display(HTML("<style>.container { width:100% !important; }</style>"))
-    data = pd.read_csv(csvs[0], sep='\t', encoding='oem')
+    data = pd.read_csv('./rawData/PhotochemCAD3/PCAD3 Compd Database 2018/2018_03 PCAD3.db', sep='\t', encoding='oem')
     data.drop(['#', 'Instrument', 'Date', 'Reference', 'Inv', 'Instrument.1', 'Date.1', 'Reference.1', 'Inv.1',
                'Unnamed: 21'], axis='columns', inplace=True)
     #data.head(1)
 
-    temp = pd.read_csv(csvs[1])
+    temp = pd.read_csv('./rawData/PhotochemCAD3/SmilesData.csv')
     temp['Smiles'] = temp['Correct Smiles'].fillna(temp['Generated Smiles'])
     # temp.head(1)
 
@@ -257,7 +250,7 @@ def Photoche(csvs):
     utils.SaveDataToOutput(data, 'extraction-photoChemCAD3')
     utils.LoadDataFromOutput('extraction-photoChemCAD3')
 def pubche():
-    # display(HTML("<style>.container { width:100% !important; }</style>"))
+
     temp = []
     dataDirectory = './rawData/PubChem/'
     for file in os.listdir(dataDirectory):
@@ -276,3 +269,8 @@ def pubche():
     utils.SaveDataToOutput(data, 'extraction-pubChem')
     utils.LoadDataFromOutput('extraction-pubChem')
 
+def run_all():
+    deep4che()
+    # dynamocs()
+    # Photoche()
+    # pubche()

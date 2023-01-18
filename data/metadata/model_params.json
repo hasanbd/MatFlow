@@ -1,1 +1,1 @@
-{"X": ["sepal.length", "sepal.width", "petal.length", "petal.width"], "y": "variety", "pred_type": "Classification"}
+{"X": ["Dye", "SMILES", "TD-DFT \u03bc (D)", "Min \u03b5", "Max \u03b5"], "y": "Dye", "pred_type": "Classification"}

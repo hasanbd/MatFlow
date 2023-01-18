@@ -42,32 +42,32 @@ def form():
           <div class="row gy-12">
             <div class="col-lg-12">
               <div class="row gy-12">
+              <div class="col-md-6">
+                  <div class="info-box">
+                    <i class="bi bi-geo-alt"></i>
+                    <h3>Address 1</h3>
+                    <p><b>Hasan Jamil, <span style="text-italic">Ph.D</span></b> <br> Associate Professor<br>University of Idaho <br></p>
+                  </div>
+                </div>
                 <div class="col-md-6">
                   <div class="info-box">
                     <i class="bi bi-geo-alt"></i>
-                    <h3>Address</h3>
-                    <p>A108 Adam Street,<br>New York, NY 535022</p>
+                    <h3>Address 2</h3>
+                    <p><b>Md Hasan Hafizur Rahman</b> <br> Department of Computer Science and Engineering<br>Comilla University <br> Cumilla, Bangladesh</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-box">
                     <i class="bi bi-telephone"></i>
                     <h3>Call Us</h3>
-                    <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                    <p>+8801721021909</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="info-box">
                     <i class="bi bi-envelope"></i>
                     <h3>Email Us</h3>
-                    <p>info@example.com<br>contact@example.com</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="info-box">
-                    <i class="bi bi-clock"></i>
-                    <h3>Open Hours</h3>
-                    <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                    <p>hhr@cou.ac.bd<br>hasancse03@gmail.com</p>
                   </div>
                 </div>
               </div>

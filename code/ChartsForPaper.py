@@ -3,6 +3,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import sklearn.metrics as skm
+import streamlit as st
 import dask
 import dask.dataframe as dd
 
@@ -29,7 +30,6 @@ from . import labels
 from . import train
 
 def Overall_Data():
-    # display(HTML("<style>.container { width:100% !important; }</style>"))
     sns.set_theme(style="whitegrid", font_scale=1.1, font='Calibri')
     sns.despine(left=True)
 
@@ -75,7 +75,7 @@ def Overall_Data():
     g.legend(title='');
     g.figure.tight_layout()
     g.get_figure().savefig('./output/chart-overall-data.png', bbox_inches='tight', dpi=600)
-
+    st.pyplot(g.get_figure())
 def Ovall_RandomForest_Classifaications():
     sns.set_theme(style="whitegrid", font_scale=1.1, font='Calibri')
     sns.despine(left=True)
@@ -86,8 +86,8 @@ def Ovall_RandomForest_Classifaications():
     padInches = 0.05
     development = utils.LoadDataFromOutput('dataset-development')
     validation = utils.LoadDataFromOutput('dataset-validation')
-    print('Developement Dataset Count: ' + str(len(development)))
-    print('Validate Dataset Count: ' + str(len(validation)))
+    # print('Developement Dataset Count: ' + str(len(development)))
+    # print('Validate Dataset Count: ' + str(len(validation)))
 
     data = pd.concat([development, validation]).reset_index(drop=True)
     # print('Total Count: ' + str(len(data)))
@@ -152,7 +152,7 @@ def Ovall_RandomForest_Classifaications():
     g = sns.lineplot(data=graphData, x='Threshold', y='value', hue='variable', ax=axes[0])
     g.set(ylim=(.9, 1), ylabel='Accuracy', xlabel=labels.EpsilonFull);
     ##error##
-    g
+
     # g.legend_.set_bestModels['Model'] = bestModels.progress_apply(lambda x: train.TrainRandomForestClassifier(x['Model Params'], x['Threshold'], development), axis='columns')
     bestModels['Random Forest Classifier(Development)'] = bestModels.apply(
         lambda x: train.ComputeClassifierAccuracy(x['Model'], x['Threshold'], development), axis='columns')
@@ -163,8 +163,7 @@ def Ovall_RandomForest_Classifaications():
     bestModels['Always Low ε(Validation)'] = bestModels.apply(
         lambda x: ComputeAllowsLowAccuracy(x['Threshold'], validation), axis='columns')
     bestModels.head(1)
-    #
-    #
+
     classifierModelUsed = bestModels.iloc[1]
 
     low = data[data['Epsilon'] < classifierModelUsed['Threshold']].reset_index(drop=True).copy()
@@ -201,13 +200,14 @@ def Ovall_RandomForest_Classifaications():
     graphData = percentageLowRuns.drop(['Development', 'Validation', 'Model'], axis='columns').melt('Percentage Low ε')
 
     g = sns.lineplot(data=graphData, x='Percentage Low ε', y='value', hue='variable', ax=axes[1])
-    g.set(ylabel='Accuracy', xlabel='Percentage Low ε in Dataset');
+    g.set(ylabel='Accuracy', xlabel='Percentage Low ε in Dataset')
     g.legend_.set_title('Model(Dataset)')
 
     fig.savefig('./output/chart-overall-RandomForestClassifier.png', bbox_inches='tight', dpi=600)
+    st.pyplot(g.get_figure())
 
-    print('Classifier model used in experiments:')
-    print('Threshold of ' + str(classifierModelUsed['Threshold']))
+    # print('Classifier model used in experiments:')
+    # print('Threshold of ' + str(classifierModelUsed['Threshold']))
     display(classifierModelUsed['Model Params'])
 
 def Ovall_RandomForestRegrassion():
@@ -266,7 +266,7 @@ def Ovall_RandomForestRegrassion():
         fig, axes = plt.subplots(ncols=2, figsize=(8, 4), constrained_layout=True, sharey=True, sharex=True)
         GraphResults(development, regressorModelUsed, 'Development', axes[0])
         GraphResults(validation, regressorModelUsed, 'Validation', axes[1])
-
+        st.pyplot(fig.get_figure())
         fig.savefig('./output/chart-overall-RandomForestRegressor.png', bbox_inches='tight', dpi=600)
 def prediction():
     sns.set_theme(style="whitegrid", font_scale=1.1, font='Calibri')
@@ -327,7 +327,7 @@ def prediction():
     g.set_xlabel('')
     utils.RotateAllXText([g])
     g.figure.tight_layout()
-
+    st.pyplot(g.get_figure())
     g.figure.savefig('./output/chart-prediction-experimental.png', bbox_inches='tight', dpi=600)
 
     data = utils.LoadDataFromOutput('dataset-unknownEpsilon')
@@ -341,8 +341,18 @@ def prediction():
 
     g = sns.scatterplot(data=results, x=results.index, y='Regressor Prediction')
     g.set(xticklabels=[], ylabel='Regressor Predicted ' + labels.EpsilonFull)
-
+    st.pyplot(g.get_figure())
     g.figure.savefig('./output/chart-prediction-unknown.png', bbox_inches='tight', dpi=600)
     combined = results.merge(data, on='Source Key')
     combined[(combined['Regressor Prediction'] >= 150)].to_csv('./output/highUnknownPredictions.csv')
     pd.read_csv('./output/highUnknownPredictions.csv')
+
+def run_all():
+    # prediction()
+    # print('done1')
+    Ovall_RandomForest_Classifaications()
+    # print('done2')
+    # Ovall_RandomForestRegrassion()
+    print('done3')
+    # Overall_Data()
+    # print('done4')
