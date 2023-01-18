@@ -5,7 +5,6 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import streamlit as st
-
 from forms import utils
 
 
@@ -14,7 +13,7 @@ def main():
         st.markdown("Upload data")
     else:
         df_analysis = pd.read_csv('data/iris.csv')
-        cols = pd.read_csv('data/metadata/ctd.csv')
+        cols = pd.read_csv('data/metadata/column_type_desc.csv')
         Categorical, Numerical, Object = utils.getColumnTypes(cols)
         corr = df_analysis.corr()
 

@@ -12,8 +12,8 @@ from . import features
 import tqdm.notebook
 tqdm.notebook.tqdm_notebook.pandas()
 
-def Experimental(csvs):
-    data = pd.read_csv(csvs[0])
+def Experimental():
+    data = pd.read_csv('./rawData/Experimental_SMILES_Predictions.csv')
 
     data.rename(columns={'SMILES': 'Smiles', 'Min ε': 'Min Epsilon', 'Max ε': 'Max Epsilon', 'Dye': 'Source Key',
                          'TD-DFT μ (D)': 'TD-DFT (Debye)'}, inplace=True)
@@ -178,3 +178,9 @@ def unknown():
     utils.ShowHistogramCharts(data)
     utils.SaveDataToOutput(data, 'dataset-unknownEpsilon')
     utils.LoadDataFromOutput('dataset-unknownEpsilon')
+
+def run_all():
+    print('hellgfgo')
+    Experimental()
+    Training()
+    unknown()
