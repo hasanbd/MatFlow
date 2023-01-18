@@ -14,4 +14,4 @@ joblib~=1.1.0
 pathlib~=1.0.1
 sweetviz~=2.1.4
 scipy~=1.9.1
-pandas-profiling===dev
+pandas-profiling~=3.6.2
