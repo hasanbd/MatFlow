@@ -105,6 +105,10 @@ def read_dataset(dataset):
     if col1.button("Submit", key=f"read_submit"):
         is_valid = validate(name, dataset.list_name())
         if is_valid:
+
+            if 'call_fun' not in st.session_state:
+                st.session_state.call_fun=0
+
             st.session_state.dataset = filepath_or_buffer
             st.session_state.experiment_name = exp_name
             base_name = exp_name.split(' ')[0]

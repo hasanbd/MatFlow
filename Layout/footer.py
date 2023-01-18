@@ -26,17 +26,6 @@ def load_view():
         </style>
         <footer id="footer" class="footer">
             <div class="container">
-            <div>
-                <h4 style='font-size: 20px;font-weight: 700;margin: 0 0 20px 0;color: #012970;'>Publications</h4>
-                <p>
-                    <span style='font-size: 16px;font-weight: 600;color: #012970;'>Austin Biaggne, Lawrence Spear, German Barcenas, Maia Ketteridge, Young C.Kim, Joseph S.Melinger, Willia B.Knowlton, Bernard Yurke, and Lan Li - </span>
-                    <span class='text-muted'>Data-Driven and Multiscale Modeling of DNA-Templated Dye</span>   
-                </p>
-                <p>
-                    <span style='font-size: 16px;font-weight: 600;color: #012970;'>Hasan M Jamil, Lan Li -</span>
-                    <span class='text-muted'>A Knowledgebased Novel Materials Design System using Machine Learning</span>
-                </p>
-            </div>
             <div class="copyright">
                 &copy; Copyright <strong><span>jamil@uidaho.edu</span></strong>. All Rights Reserved
             </div>

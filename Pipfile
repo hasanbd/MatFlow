@@ -18,6 +18,7 @@ ipython = "*"
 dask = "*"
 streamlit-option-menu = "*"
 hydralit-components = "*"
+streamlit-extras = "*"
 
 [dev-packages]
 
