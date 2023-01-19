@@ -1,2 +1,7 @@
 venv
+.idea
+requirements.txt
+Pipfile.lock
+Pipfile
+environment.yml
 
