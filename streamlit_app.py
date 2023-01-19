@@ -49,8 +49,8 @@ st.markdown('''
 # st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 #
 # # Add all my application pages here
-# ml.connect("Start", home.load_view)
-# ml.connect("demo",dl.main)
+#ml.connect("Start", home.load_view)
+#ml.connect("demo",dl.main)
 # ml.connect("🗃️Upload Dataset", dl.main)
 # ml.connect("⚙️Training", ModelBuild.main)
 # ml.connect("💡 Best Fit", machine_learning.main)

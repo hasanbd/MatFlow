@@ -4,6 +4,7 @@ Purpose:connect manager for page to page link
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 
+
 class MP:
 
     # @st.cache()
@@ -26,6 +27,7 @@ class MP:
                 switch_page('selectpage')
 
         # st.sidebar.image('Logo.png')
+
         # page = st.sidebar.selectbox(
         #     '💎 System Navigation here⤵️::💎',
         #     self.forms,
