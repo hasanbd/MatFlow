@@ -1,4 +1,5 @@
 /venv
 /requirements.txt
-/Frontend
-Frontend
+Pipfile.lock
+Pipfile
+environment.yml
