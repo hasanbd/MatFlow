@@ -25,11 +25,10 @@ class MP:
             if next:
                 switch_page('selectpage')
 
-        # st.sidebar.image('Logo.png')
-        # page = st.sidebar.selectbox(
-        #     '💎 System Navigation here⤵️::💎',
-        #     self.forms,
-        #     format_func=lambda form: form['title']
-        # )
-        # page['function']()
-        # switch_page()
+        st.sidebar.image('Logo.png')
+        page = st.sidebar.selectbox(
+            '💎 System Navigation here⤵️::💎',
+            self.forms,
+            format_func=lambda form: form['title']
+        )
+        page['function']()

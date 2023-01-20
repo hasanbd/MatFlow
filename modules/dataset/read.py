@@ -76,23 +76,20 @@ def read_dataset(dataset):
     show_sample = col2.checkbox("Show Sample", key=f"show_sample")
     if show_sample:
         st.markdown('<h2>All raw datasets for DNA-Templated DYE aggregates</h2>', unsafe_allow_html=True)
-        for i in filepath_or_buffer:
+        try:
+            for i in filepath_or_buffer:
+                x = i.rfind('\\')
+                y = i.rfind('/')
+                if x < y:
+                    x = y
+                x += 1
+                with st.expander(i[x:]):
+                    if i.endswith('.csv'):
+                        dt = pd.read_csv(i)
+                        st.table(dt.head())
+        except:
+            st.write('something went wrong')
 
-            x = i.rfind('\\')
-            y = i.rfind('/')
-            if x < y:
-                x = y
-            x += 1
-            with st.expander(i[x:]):
-                if i.endswith('.csv'):
-                    dt = pd.read_csv(i)
-                    st.table(dt.head())
-                if i.endswith('.pdf'):
-                    st.write("[link](%s)" % i)
-                # if i.endswith('.db'):
-                #     print('hello')
-                #     dt = pd.read_sql_table(i)
-                #     st.table(dt.head())
 
 
 
@@ -199,7 +196,7 @@ def sample_data(col1):
     path = Path().absolute()
 
     list_sample = {
-        "Iris Dataset": [f"{path}/sample/Iris.csv"],
+        "Iris Dataset": [f"{path}/sample/iris.csv"],
         "TMD Dataset": [f"{path}/sample/tmd.csv"],
         "Epsilon Dataset": [
             f"{path}/rawData/Deep4Chem/DB for chromophore_Sci_Data_rev02.csv",
