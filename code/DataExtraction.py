@@ -224,6 +224,7 @@ def dynamocs():
     utils.ShowHistogramCharts(data)
     utils.SaveDataToOutput(data, 'extraction-dyomics')
     utils.LoadDataFromOutput('extraction-dyomics')
+    st.write('hellojdhkhsfk')
 def Photoche():
     st.write('step3')
     # display(HTML("<style>.container { width:100% !important; }</style>"))
