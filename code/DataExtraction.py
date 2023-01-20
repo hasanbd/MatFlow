@@ -225,11 +225,13 @@ def dynamocs():
     utils.SaveDataToOutput(data, 'extraction-dyomics')
     utils.LoadDataFromOutput('extraction-dyomics')
 def Photoche():
+    st.write('step3')
     # display(HTML("<style>.container { width:100% !important; }</style>"))
     data = pd.read_csv('./rawData/PhotoChemCAD3/PCAD3 Compd Database 2018/2018_03 PCAD3.db', sep='\t', encoding='oem')
     data.drop(['#', 'Instrument', 'Date', 'Reference', 'Inv', 'Instrument.1', 'Date.1', 'Reference.1', 'Inv.1',
                'Unnamed: 21'], axis='columns', inplace=True)
     #data.head(1)
+    st.write('step2')
 
     temp = pd.read_csv('./rawData/PhotoChemCAD3/SmilesData.csv')
     temp['Smiles'] = temp['Correct Smiles'].fillna(temp['Generated Smiles'])
