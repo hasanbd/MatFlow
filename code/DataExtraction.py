@@ -226,14 +226,15 @@ def dynamocs():
     utils.LoadDataFromOutput('extraction-dyomics')
 def Photoche():
     # display(HTML("<style>.container { width:100% !important; }</style>"))
-    data = pd.read_csv('./rawData/PhotochemCAD3/PCAD3 Compd Database 2018/2018_03 PCAD3.db', sep='\t', encoding='oem')
+    data = pd.read_csv('./rawData/PhotoChemCAD3/PCAD3 Compd Database 2018/2018_03 PCAD3.db', sep='\t', encoding='oem')
     data.drop(['#', 'Instrument', 'Date', 'Reference', 'Inv', 'Instrument.1', 'Date.1', 'Reference.1', 'Inv.1',
                'Unnamed: 21'], axis='columns', inplace=True)
     #data.head(1)
 
-    temp = pd.read_csv('./rawData/PhotochemCAD3/SmilesData.csv')
+    temp = pd.read_csv('./rawData/PhotoChemCAD3/SmilesData.csv')
     temp['Smiles'] = temp['Correct Smiles'].fillna(temp['Generated Smiles'])
     # temp.head(1)
+    st.write('step1')
 
     data = data.merge(temp[['Structure', 'Smiles']], on='Structure')
     #print('Total Count: ' + str(len(data)))
