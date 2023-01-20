@@ -228,12 +228,9 @@ def dynamocs():
 def Photoche():
     data = pd.read_csv('./rawData/PhotoChemCAD3/2018_03 PCAD3.csv')
     #data.head(1)
-
     temp = pd.read_csv('./rawData/PhotoChemCAD3/SmilesData.csv')
     temp['Smiles'] = temp['Correct Smiles'].fillna(temp['Generated Smiles'])
     # temp.head(1)
-    st.write('step1')
-
     data = data.merge(temp[['Structure', 'Smiles']], on='Structure')
     #print('Total Count: ' + str(len(data)))
     #data.head(1)
@@ -271,7 +268,5 @@ def pubche():
 def run_all():
     deep4che()
     dynamocs()
-    st.write('success2')
     Photoche()
-    st.write('success3')
     pubche()
