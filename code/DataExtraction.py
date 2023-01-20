@@ -227,7 +227,6 @@ def dynamocs():
     utils.LoadDataFromOutput('extraction-dyomics')
 def Photoche():
     data = pd.read_csv('./rawData/PhotoChemCAD3/2018_03 PCAD3.csv')
-    #data.head(1)
     temp = pd.read_csv('./rawData/PhotoChemCAD3/SmilesData.csv')
     temp['Smiles'] = temp['Correct Smiles'].fillna(temp['Generated Smiles'])
     # temp.head(1)
