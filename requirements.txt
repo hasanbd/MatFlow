@@ -24,3 +24,4 @@ favicon~=0.7.0
 pip==22.3.1
 rdkit-pypi~=2022.9.2
 notebook
+ipython
