@@ -271,6 +271,6 @@ def pubche():
 
 def run_all():
     deep4che()
-    # dynamocs()
-    # Photoche()
-    # pubche()
+    dynamocs()
+    Photoche()
+    pubche()
