@@ -113,7 +113,7 @@ def read_dataset(dataset):
             base_name = exp_name.split(' ')[0]
             if base_name == 'Epsilon':
                 DataExtraction.run_all()
-                # BuildDataset.run_all()
+                BuildDataset.run_all()
             st.success("Success")
 
             # if data is not None:
