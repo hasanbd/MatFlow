@@ -227,12 +227,7 @@ def dynamocs():
     utils.LoadDataFromOutput('extraction-dyomics')
 def Photoche():
     st.write('step3')
-    # display(HTML("<style>.container { width:100% !important; }</style>"))
-    try:
-        data = pd.read_csv('2018_03 PCAD3.db', sep='\t', encoding='oem')
-        st.write('step2')
-    except:
-        st.('error')
+    data = pd.read_csv('./2018_03 PCAD3.db', sep='\t', encoding='oem')
     data.drop(['#', 'Instrument', 'Date', 'Reference', 'Inv', 'Instrument.1', 'Date.1', 'Reference.1', 'Inv.1',
                'Unnamed: 21'], axis='columns', inplace=True)
     #data.head(1)
