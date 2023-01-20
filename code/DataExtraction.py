@@ -275,6 +275,9 @@ def pubche():
 
 def run_all():
     deep4che()
+    st.write('success1')
     dynamocs()
+    st.write('success2')
     Photoche()
+    st.write('success3')
     pubche()
