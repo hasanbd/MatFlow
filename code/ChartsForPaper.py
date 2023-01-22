@@ -357,11 +357,11 @@ def prediction():
     pd.read_csv('./output/highUnknownPredictions.csv')
 
 def run_all():
-    # prediction()
+    prediction()
     # print('done1')
-    # Ovall_RandomForest_Classifaications()
+    Ovall_RandomForest_Classifaications()
     # print('done2')
-    # Ovall_RandomForestRegrassion()
+    Ovall_RandomForestRegrassion()
     # print('done3')
     Overall_Data()
     return True
