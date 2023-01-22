@@ -266,9 +266,8 @@ def pubche():
     utils.LoadDataFromOutput('extraction-pubChem')
 
 def run_all():
-    pass
-#     deep4che()
-#     dynamocs()
-#     Photoche()
-#     pubche()
+    deep4che()
+    dynamocs()
+    Photoche()
+    pubche()
 
