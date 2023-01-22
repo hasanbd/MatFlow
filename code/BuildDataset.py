@@ -53,7 +53,9 @@ def Training():
     temp = temp[['Source', 'Source Key', 'Epsilon', 'Smiles']]
 
     data = temp.copy()
+    st.write('hello')
     temp = utils.LoadDataFromOutput('extraction-photochemCad3')
+    st.write('not hello')
     temp['Source'] = 'PhotoChemCAD3'
     temp.columns = temp.columns.str.replace('_', ' ').str.title()
     # print(len(temp))
@@ -180,6 +182,7 @@ def unknown():
     utils.LoadDataFromOutput('dataset-unknownEpsilon')
 
 def run_all():
-    Experimental()
+#     Experimental()
     Training()
-    unknown()
+    st.write('done2')
+#     unknown()
