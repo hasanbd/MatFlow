@@ -117,12 +117,10 @@ def read_dataset(dataset):
             if base_name == 'Epsilon':
                 pt = st.progress(st.session_state.progress)
                 DataExtraction.run_all()
-                st.write('dataex')
                 if st.session_state.progress==0:
                     st.session_state.progress+=30
                 pt.progress(st.session_state.progress)
                 BuildDataset.run_all()
-                st.write('build')
                 if st.session_state.progress==30:
                     st.session_state.progress+=30
                 pt.progress(st.session_state.progress)
