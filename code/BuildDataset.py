@@ -55,7 +55,7 @@ def Training():
 
     data = temp.copy()
     st.write('11111')
-    temp = utils.LoadDataFromOutput('extraction-PhotoChemCAD3')
+    temp = utils.LoadDataFromOutput('extraction-photoChemCAD3')
     st.write('11112')
     temp['Source'] = 'PhotoChemCAD3'
     temp.columns = temp.columns.str.replace('_', ' ').str.title()
