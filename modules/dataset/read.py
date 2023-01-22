@@ -22,10 +22,19 @@ def show_pdf(file_path):
     pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="800" height="800" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
-#
-def read_dataset(dataset):
-    data = None
+def show_all_graph():
 
+    try:
+        for i in st.session_state.graph:
+            for k,j in i.items():
+                st.caption(f"""<h4 style="font-size:1.5em;" > {k} </h4>""",unsafe_allow_html=True)
+                st.pyplot(j)
+    except:
+        st.write('something went wrong')
+
+def read_dataset(dataset):
+
+    data = None
     # option_list = ["Upload File", "Github URL", "Manual Input", "Sample Data"]
     option_list = ["Upload File", "Sample Data"]
 
@@ -52,7 +61,6 @@ def read_dataset(dataset):
         )
         exp_name = sample
         filepath_or_buffer = upload_file()
-        print(filepath_or_buffer)
         # return
     # elif option == option_list[1]:
     #	filepath_or_buffer = github_url(col1)
@@ -75,7 +83,7 @@ def read_dataset(dataset):
 
     show_sample = col2.checkbox("Show Sample", key=f"show_sample")
     if show_sample:
-        st.markdown('<h2>All raw datasets for DNA-Templated DYE aggregates</h2>', unsafe_allow_html=True)
+        st.markdown('<h4>All raw datasets for DNA-Templated DYE aggregates</h4>', unsafe_allow_html=True)
         try:
             for i in filepath_or_buffer:
                 x = i.rfind('\\')
@@ -98,21 +106,31 @@ def read_dataset(dataset):
 
 
     uploaded_file = []
-    if col1.button("Submit", key=f"read_submit"):
+
+    if col1.button("Submit", key=f"read_submit") or st.session_state.call_fun:
         is_valid = validate(name, dataset.list_name())
         if is_valid:
-
-            if 'call_fun' not in st.session_state:
-                st.session_state.call_fun=0
-
-            st.session_state.dataset = filepath_or_buffer
-            st.session_state.experiment_name = exp_name
+            # st.session_state.dataset = filepath_or_buffer
+            # st.session_state.experiment_name = exp_name
             base_name = exp_name.split(' ')[0]
+            st.session_state.progress=0
             if base_name == 'Epsilon':
-                DataExtraction.run_all()
-                BuildDataset.run_all()
-            st.success("Success")
-
+                pt = st.progress(st.session_state.progress)
+                # DataExtraction.run_all()
+                if st.session_state.progress==0:
+                    st.session_state.progress+=30
+                pt.progress(st.session_state.progress)
+                # BuildDataset.run_all()
+                if st.session_state.progress==30:
+                    st.session_state.progress+=30
+                pt.progress(st.session_state.progress)
+                st.success("Success")
+                if st.session_state.progress==60:
+                    st.session_state.progress+=40
+                if ChartsForPaper.run_all():
+                    with st.expander('ML Visualization'):
+                        show_all_graph()
+                pt.progress(st.session_state.progress)
             # if data is not None:
             #     dataset.add(name, data)
             # else:
@@ -203,7 +221,8 @@ def sample_data(col1):
             f"{path}/rawData/Deep4Chem/DoubleCheck-High Extinction.csv",
             f"{path}/rawData/Dyomics/Dyomics_2017.pdf",
             f"{path}/rawData/Dyomics/SmilesData.csv",
-            f"{path}/rawData/PhotoChemCAD3/SmilesData.csv",
+            f"{path}/rawData/PhotochemCAD3/SmilesData.csv",
+            f"{path}/rawData/PhotochemCAD3/PCAD3 Compd Database 2018/2018_03 PCAD3.db",
             f"{path}/rawData/Experimental_SMILES_Predictions.csv"
         ]
     }

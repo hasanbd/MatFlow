@@ -36,7 +36,7 @@ def Experimental():
     # data.info()
     utils.InspectColumnValues(data)
     # data.describe()
-    utils.ShowHistogramCharts(data)
+    utils.ShowHistogramCharts(data,'dataset-experimental')
     utils.SaveDataToOutput(data, 'dataset-experimental')
     utils.LoadDataFromOutput('dataset-experimental')
 def Training():
@@ -94,7 +94,7 @@ def Training():
     data.drop(['Source', 'Source Key', 'Smiles', 'Inchikey'], axis='columns', inplace=True)
     # data.head(1)
     limit = 800000
-    print('Number of entries >= 800K: ' + str(len(data[data['Epsilon'] >= limit])))
+    # print('Number of entries >= 800K: ' + str(len(data[data['Epsilon'] >= limit])))
     data = data[data['Epsilon'] < limit].copy()
 
     # print('Columns with infinate values: ' + str(data.columns[np.isinf(data).any()].values))
@@ -111,7 +111,7 @@ def Training():
     # data.info()
     utils.InspectColumnValues(data)
     # data.describe()
-    utils.ShowHistogramCharts(data)
+    utils.ShowHistogramCharts(data,'dataset-training')
 
     def SplitData(data):
         validation = data.sample(frac=.1, random_state=82219)
@@ -175,12 +175,11 @@ def unknown():
     # data.info()
     utils.InspectColumnValues(data)
     # data.describe()
-    utils.ShowHistogramCharts(data)
+    utils.ShowHistogramCharts(data,'dataset-unknownEpsilon')
     utils.SaveDataToOutput(data, 'dataset-unknownEpsilon')
     utils.LoadDataFromOutput('dataset-unknownEpsilon')
 
 def run_all():
-    print('hellgfgo')
     Experimental()
     Training()
     unknown()

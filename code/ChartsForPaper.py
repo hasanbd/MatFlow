@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -75,7 +77,9 @@ def Overall_Data():
     g.legend(title='');
     g.figure.tight_layout()
     g.get_figure().savefig('./output/chart-overall-data.png', bbox_inches='tight', dpi=600)
-    st.pyplot(g.get_figure())
+    # st.pyplot(g.get_figure())
+    utils.savefigure('chart-overall-data',g.get_figure())
+
 def Ovall_RandomForest_Classifaications():
     sns.set_theme(style="whitegrid", font_scale=1.1, font='Calibri')
     sns.despine(left=True)
@@ -103,7 +107,6 @@ def Ovall_RandomForest_Classifaications():
         return skm.accuracy_score(y, y_pred)
 
     temp = models.copy()
-    # print(temp)
     temp = temp.join(temp['Model Params'].apply(lambda x: pd.Series(x, dtype='object')))
     temp['Accuracy'] = temp['Accuracy'].apply(lambda x: np.round(x, 2))
     # %%
@@ -204,7 +207,9 @@ def Ovall_RandomForest_Classifaications():
     g.legend_.set_title('Model(Dataset)')
 
     fig.savefig('./output/chart-overall-RandomForestClassifier.png', bbox_inches='tight', dpi=600)
-    st.pyplot(g.get_figure())
+
+    # st.pyplot(g.get_figure())
+    utils.savefigure('chart-overall-RandomForestClassifier',g.get_figure())
 
     # print('Classifier model used in experiments:')
     # print('Threshold of ' + str(classifierModelUsed['Threshold']))
@@ -266,8 +271,11 @@ def Ovall_RandomForestRegrassion():
         fig, axes = plt.subplots(ncols=2, figsize=(8, 4), constrained_layout=True, sharey=True, sharex=True)
         GraphResults(development, regressorModelUsed, 'Development', axes[0])
         GraphResults(validation, regressorModelUsed, 'Validation', axes[1])
-        st.pyplot(fig.get_figure())
+        # st.pyplot(fig.get_figure())
         fig.savefig('./output/chart-overall-RandomForestRegressor.png', bbox_inches='tight', dpi=600)
+        utils.savefigure('chart-overall-RandomForestRegressor', fig.get_figure())
+
+
 def prediction():
     sns.set_theme(style="whitegrid", font_scale=1.1, font='Calibri')
     sns.despine(left=True)
@@ -327,7 +335,7 @@ def prediction():
     g.set_xlabel('')
     utils.RotateAllXText([g])
     g.figure.tight_layout()
-    st.pyplot(g.get_figure())
+    # st.pyplot(g.get_figure())
     g.figure.savefig('./output/chart-prediction-experimental.png', bbox_inches='tight', dpi=600)
 
     data = utils.LoadDataFromOutput('dataset-unknownEpsilon')
@@ -341,8 +349,9 @@ def prediction():
 
     g = sns.scatterplot(data=results, x=results.index, y='Regressor Prediction')
     g.set(xticklabels=[], ylabel='Regressor Predicted ' + labels.EpsilonFull)
-    st.pyplot(g.get_figure())
+    # st.pyplot(g.get_figure())
     g.figure.savefig('./output/chart-prediction-unknown.png', bbox_inches='tight', dpi=600)
+    utils.savefigure('chart-overall-RandomForestRegressor', g.get_figure())
     combined = results.merge(data, on='Source Key')
     combined[(combined['Regressor Prediction'] >= 150)].to_csv('./output/highUnknownPredictions.csv')
     pd.read_csv('./output/highUnknownPredictions.csv')
@@ -350,9 +359,10 @@ def prediction():
 def run_all():
     # prediction()
     # print('done1')
-    Ovall_RandomForest_Classifaications()
+    # Ovall_RandomForest_Classifaications()
     # print('done2')
     # Ovall_RandomForestRegrassion()
-    print('done3')
-    # Overall_Data()
+    # print('done3')
+    Overall_Data()
+    return True
     # print('done4')
