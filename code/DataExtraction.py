@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from . import utils
 import os
-import streamlit as st
 
 import re
 from io import StringIO
@@ -37,7 +36,7 @@ def deep4che():
     utils.ConvertFloatColumnsToIntegerIfNoDataLoss(data)
     utils.CompressIntegerColumns(data)
     utils.InspectColumnValues(data)
-    utils.ShowHistogramCharts(data)
+    utils.ShowHistogramCharts(data,'extraction-deep4Chem')
     utils.SaveDataToOutput(data, 'extraction-deep4Chem')
     utils.LoadDataFromOutput('extraction-deep4Chem')
 
@@ -222,14 +221,16 @@ def dynamocs():
     ##data.info()
     utils.InspectColumnValues(data)
     #data.describe()
-    utils.ShowHistogramCharts(data)
+    utils.ShowHistogramCharts(data,'extraction-dyomics')
     utils.SaveDataToOutput(data, 'extraction-dyomics')
     utils.LoadDataFromOutput('extraction-dyomics')
 def Photoche():
+    # display(HTML("<style>.container { width:100% !important; }</style>"))
     data = pd.read_csv('./rawData/PhotoChemCAD3/2018_03 PCAD3.csv')
     temp = pd.read_csv('./rawData/PhotoChemCAD3/SmilesData.csv')
     temp['Smiles'] = temp['Correct Smiles'].fillna(temp['Generated Smiles'])
     # temp.head(1)
+
     data = data.merge(temp[['Structure', 'Smiles']], on='Structure')
     #print('Total Count: ' + str(len(data)))
     #data.head(1)
@@ -241,7 +242,7 @@ def Photoche():
     ##data.info()
     utils.InspectColumnValues(data)
     #data.describe()
-    utils.ShowHistogramCharts(data)
+    utils.ShowHistogramCharts(data,'extraction-photoChemCAD3')
     utils.SaveDataToOutput(data, 'extraction-photoChemCAD3')
     utils.LoadDataFromOutput('extraction-photoChemCAD3')
 def pubche():
@@ -260,7 +261,7 @@ def pubche():
     ##data.info()
     utils.InspectColumnValues(data)
     #data.describe()
-    utils.ShowHistogramCharts(data)
+    utils.ShowHistogramCharts(data,'extraction-pubChem')
     utils.SaveDataToOutput(data, 'extraction-pubChem')
     utils.LoadDataFromOutput('extraction-pubChem')
 

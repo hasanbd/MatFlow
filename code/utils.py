@@ -128,7 +128,8 @@ def RemoveDuplicateColumns(data):
 
 
 
-def ShowHistogramCharts(data):
+def ShowHistogramCharts(data,name):
+
     cnt = 0
     columnsToDisplay = data.select_dtypes(exclude='object').columns
     numberOfColumns = min(len(columnsToDisplay), 5)
@@ -138,20 +139,31 @@ def ShowHistogramCharts(data):
         sns.histplot(data[column], bins=20, ax=axes[i % numberOfColumns])
         if (i % numberOfColumns == numberOfColumns - 1):
             if cnt == 0:
-                st.markdown('<h3>Processed data</h3>',unsafe_allow_html=True)
-                pdd = pd.DataFrame(data.describe())
-                print(pdd)
-                st.table(pdd)
-                st.markdown('<h3>Histograms</h3>', unsafe_allow_html=True)
-                cnt += 1
-                st.pyplot(fig)
+                try:
+                    if 'table' not in st.session_state:
+                        st.session_state.table = []
+                        st.session_state.graph=[]
+                    pdd = pd.DataFrame(data.describe())
+
+                    with st.expander('Processed data of '+name):
+                        st.session_state.table.append({name:pdd})
+                        st.table(pdd)
+                    cnt += 1
+                    st.session_state.graph.append({name:fig})
+                except:
+                    pass
+
             plt.show()
+
+def savefigure(name,fig):
+    if 'graph' not in st.session_state:
+        st.session_state.graph=[]
+    st.session_state.graph.append({name:fig})
 
 
 def SaveDataToOutput(data, name):
     if (os.path.exists(outputDirectory) == False):
         os.mkdir(outputDirectory)
-
     data.to_parquet(os.path.join(outputDirectory, name + '.gzip.parquet'), compression='gzip')
 
 

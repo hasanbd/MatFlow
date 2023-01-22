@@ -31,4 +31,4 @@ class MP:
             self.forms,
             format_func=lambda form: form['title']
         )
-        page['function']()
+        # page['function']()
