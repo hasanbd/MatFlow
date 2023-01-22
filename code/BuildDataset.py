@@ -3,6 +3,7 @@ import numpy as np
 from rdkit import Chem
 import seaborn as sns
 import matplotlib.pyplot as plt
+import streamlit as st
 
 from IPython.core.display import display, HTML
 
@@ -53,9 +54,7 @@ def Training():
     temp = temp[['Source', 'Source Key', 'Epsilon', 'Smiles']]
 
     data = temp.copy()
-    st.write('hello')
-    temp = utils.LoadDataFromOutput('extraction-photochemCad3')
-    st.write('not hello')
+    temp = utils.LoadDataFromOutput('extraction-photoChemCAD3')
     temp['Source'] = 'PhotoChemCAD3'
     temp.columns = temp.columns.str.replace('_', ' ').str.title()
     # print(len(temp))

@@ -270,3 +270,4 @@ def run_all():
     dynamocs()
     Photoche()
     pubche()
+
