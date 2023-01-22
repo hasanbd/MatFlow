@@ -181,6 +181,7 @@ def unknown():
     utils.LoadDataFromOutput('dataset-unknownEpsilon')
 
 def run_all():
-    Experimental()
+#     Experimental()
     Training()
-    unknown()
+    st.write('done2')
+#     unknown()
