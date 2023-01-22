@@ -221,7 +221,7 @@ def sample_data(col1):
             f"{path}/rawData/Deep4Chem/DoubleCheck-High Extinction.csv",
             f"{path}/rawData/Dyomics/Dyomics_2017.pdf",
             f"{path}/rawData/Dyomics/SmilesData.csv",
-            f"{path}/rawData/PhotochemCAD3/SmilesData.csv",
+            f"{path}/rawData/PhotoChemCAD3/SmilesData.csv",
             f"{path}/rawData/Experimental_SMILES_Predictions.csv"
         ]
     }
