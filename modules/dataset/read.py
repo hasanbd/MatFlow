@@ -222,7 +222,6 @@ def sample_data(col1):
             f"{path}/rawData/Dyomics/Dyomics_2017.pdf",
             f"{path}/rawData/Dyomics/SmilesData.csv",
             f"{path}/rawData/PhotochemCAD3/SmilesData.csv",
-            f"{path}/rawData/PhotochemCAD3/PCAD3 Compd Database 2018/2018_03 PCAD3.db",
             f"{path}/rawData/Experimental_SMILES_Predictions.csv"
         ]
     }
