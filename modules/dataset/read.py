@@ -116,7 +116,7 @@ def read_dataset(dataset):
             st.session_state.progress=0
             if base_name == 'Epsilon':
                 pt = st.progress(st.session_state.progress)
-                DataExtraction.run_all()
+#                 DataExtraction.run_all()
                 if st.session_state.progress==0:
                     st.session_state.progress+=30
                 pt.progress(st.session_state.progress)
@@ -127,9 +127,9 @@ def read_dataset(dataset):
                 st.success("Success")
                 if st.session_state.progress==60:
                     st.session_state.progress+=40
-                if ChartsForPaper.run_all():
-                    with st.expander('ML Visualization'):
-                        show_all_graph()
+#                 if ChartsForPaper.run_all():
+#                     with st.expander('ML Visualization'):
+#                         show_all_graph()
                 pt.progress(st.session_state.progress)
             # if data is not None:
             #     dataset.add(name, data)
