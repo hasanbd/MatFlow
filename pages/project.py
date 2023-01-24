@@ -1,6 +1,6 @@
 import streamlit as st
-from forms import dl
-from code import ChartsForPaper
+# from forms import dl
+# from code import ChartsForPaper
 
 st.markdown('''
 <style>
@@ -21,7 +21,12 @@ font-size: 1.35em;
 }
 </style>
 ''',unsafe_allow_html=True)
-dl.main()
+try:
+    if st.session_state.file:
+        st.write(st.session_state.file)
+except:
+    pass
+# dl.main()
 
 
 

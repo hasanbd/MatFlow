@@ -160,11 +160,20 @@ def savefigure(name,fig):
         st.session_state.graph=[]
     st.session_state.graph.append({name:fig})
 
-
+def convert_df(df):
+   return df.to_csv(index=False).encode('utf-8')
 def SaveDataToOutput(data, name):
     if (os.path.exists(outputDirectory) == False):
         os.mkdir(outputDirectory)
     data.to_parquet(os.path.join(outputDirectory, name + '.gzip.parquet'), compression='gzip')
+    csv = convert_df(data)
+    st.download_button(
+        "Press to Download",
+        csv,
+        name + ".csv",
+        "text/csv",
+        key='download-csv' + name
+    )
 
 
 def LoadDataFromOutput(name):

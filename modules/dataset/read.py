@@ -13,7 +13,7 @@ from PIL import Image
 import sys
 
 sys.path.append('./')
-from code import DataExtraction, BuildDataset, ChartsForPaper
+# from code import DataExtraction, BuildDataset, ChartsForPaper
 from io import StringIO
 from pathlib import Path
 def show_pdf(file_path):
@@ -221,8 +221,7 @@ def sample_data(col1):
             f"{path}/rawData/Deep4Chem/DoubleCheck-High Extinction.csv",
             f"{path}/rawData/Dyomics/Dyomics_2017.pdf",
             f"{path}/rawData/Dyomics/SmilesData.csv",
-            f"{path}/rawData/PhotochemCAD3/SmilesData.csv",
-            f"{path}/rawData/PhotochemCAD3/PCAD3 Compd Database 2018/2018_03 PCAD3.db",
+            f"{path}/rawData/PhotoChemCAD3/SmilesData.csv",
             f"{path}/rawData/Experimental_SMILES_Predictions.csv"
         ]
     }

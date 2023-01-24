@@ -7,22 +7,22 @@ from forms import dl, DFrame, FEngineering, ExData, pProfile, machine_learning, 
 import hydralit_components as hc
 from Layout import contact, help, about, footer, start
 from mp import MP
-
+# from code import ChartsForPaper
+from streamlit_extras.switch_page_button import switch_page
+import streamlit.components.v1 as components
 ml = MP()
 
 
 #make it look nice from the start
 st.set_page_config(layout='wide',initial_sidebar_state='collapsed',)
 
-# specify the primary menu definition
+# # specify the primary menu definition
 menu_data = [
     {'id': 'Home', 'icon': 'fa-home', 'label': "Home"},
     {'id':'Contact','icon': "far fa-copy", 'label':"Contact"},
     {'id':'About','icon':"🐙",'label':"About"},
-    
-    
 ]
-
+#
 over_theme = {'txc_inactive': '#FFFFFF'}
 menu_id = hc.nav_bar(
     menu_definition=menu_data,
@@ -34,9 +34,13 @@ menu_id = hc.nav_bar(
     sticky_mode='pinned', #jumpy or not-jumpy, but sticky or pinned
 )
 
+
+# ml.connect('nothing',ChartsForPaper.Overall_Data)
+# ml.connect('visualization',dl.main)
+
 if(menu_id == "Home"):
     start.load_view()
-    ml.start()
+    # ml.start()
     footer.load_view()
 if(menu_id == "About"):
     about.load_view()
@@ -46,3 +50,4 @@ if(menu_id == "Contact"):
     footer.load_view()
 if(menu_id == "Help"):
     help.load_view()
+

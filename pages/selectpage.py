@@ -16,7 +16,7 @@ st.markdown('''
 }
 </style>
 ''',unsafe_allow_html=True)
-
+st.session_state.file=st.file_uploader('hello')
 st.write('What you want to do?')
 col1,col2=st.columns(2)
 with col1:
