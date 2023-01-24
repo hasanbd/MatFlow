@@ -167,7 +167,7 @@ def SaveDataToOutput(data, name):
         os.mkdir(outputDirectory)
     
     data.to_parquet(os.path.join(outputDirectory, name + '.gzip.parquet'), compression='gzip')
-    csv = convert_df(df)
+    csv = convert_df(data)
     st.download_button(
        "Press to Download",
        csv,
